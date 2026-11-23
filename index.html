@@ -347,6 +347,45 @@
   @media (hover: none) {
     .icon-btn:hover, .btn.primary:hover, .btn.ghost:hover { transform: none; }
   }
+  /* Capacity table for the meeting rooms */
+  .capwrap { width:100%;max-width:880px;margin-top:1.6rem;overflow-x:auto; }
+  .captable { width:100%;min-width:560px;border-collapse:collapse;font-family:'Barlow Condensed',sans-serif; }
+  .captable th {
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a8cef0;
+    font-weight:700;text-align:right;padding:0 0 7px 14px;border-bottom:1px solid var(--border);white-space:nowrap;
+  }
+  .captable th:first-child { text-align:left;padding-left:0; }
+  .captable td {
+    font-size:18px;font-weight:600;text-align:right;padding:8px 0 8px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);color:var(--ink);white-space:nowrap;
+  }
+  .captable td:first-child {
+    text-align:left;padding-left:0;text-transform:uppercase;letter-spacing:.03em;
+    font-size:16px;color:rgba(245,247,251,.86);
+  }
+  .captable td.sqm { color:var(--red); }
+  .captable tr:last-child td { border-bottom:none; }
+  @media(max-width:760px){
+    .captable { min-width:520px; }
+    .captable td { font-size:16px;padding:7px 0 7px 10px; }
+    .captable td:first-child { font-size:15px; }
+    .captable th { font-size:10px;letter-spacing:.1em;padding-left:10px; }
+  }
+
+  /* Video background, and the label that names the clip */
+  .bg-video { position:absolute;inset:0;overflow:hidden;z-index:0; }
+  .bg-video video { width:100%;height:100%;object-fit:cover; }
+  .bg-video::after {
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(10,20,34,.92) 0%, rgba(10,20,34,.72) 45%, rgba(10,20,34,.45) 100%);
+  }
+  .vidcap {
+    position:absolute;left:0;bottom:0;z-index:6;padding:14px 6vw 18px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:rgba(245,247,251,.6);
+    pointer-events:none;
+  }
+  @media(max-width:760px){ .vidcap { font-size:11px;padding:10px 6vw 14px; } }
 </style>
 </head>
 <body>
@@ -527,6 +566,82 @@
         <div class="fac"><span class="dot"></span><span data-edit>VIP and hospitality packages</span></div>
         <div class="fac"><span class="dot"></span><span data-edit>50+ further hotels within 1-15 km</span></div>
         <div class="fac"><span class="dot"></span><span data-edit>Budapest airport 1h · Vienna 2h 15m</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7b. MEETINGS & CONFERENCES -->
+  <section class="section dark">
+    <div class="bg" style="background-image:url('conf-hall-full.jpg')"></div>
+    <div class="content">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow reveal" data-edit>Meetings &amp; conferences</div>
+          <h2 class="reveal d1"><span data-edit>A conference floor,</span><br><span data-edit>inside the paddock.</span></h2>
+          <p class="lead reveal d2" data-edit>A 245 m&sup2; conference hall that seats 251, three smaller rooms for breakouts and boards, and a kitchen that already feeds the whole site. Delegates sleep upstairs and walk down.</p>
+          <div class="capwrap reveal d3">
+            <table class="captable">
+              <thead>
+                <tr><th data-edit>Room</th><th data-edit>Size</th><th data-edit>Theatre</th><th data-edit>Classroom</th><th data-edit>U-shape</th><th data-edit>Banquet</th><th data-edit>Reception</th></tr>
+              </thead>
+              <tbody>
+                <tr><td data-edit>Conference Hall</td><td class="sqm" data-edit>245 m&sup2;</td><td data-edit>251</td><td data-edit>88</td><td data-edit>42</td><td data-edit>86</td><td data-edit>220</td></tr>
+                <tr><td data-edit>Board Room</td><td class="sqm" data-edit>40 m&sup2;</td><td data-edit>41</td><td data-edit>36</td><td data-edit>24</td><td data-edit>24</td><td data-edit>35</td></tr>
+                <tr><td data-edit>Meeting Room I</td><td class="sqm" data-edit>36 m&sup2;</td><td data-edit>36</td><td data-edit>30</td><td data-edit>20</td><td data-edit>16</td><td data-edit>30</td></tr>
+                <tr><td data-edit>Meeting Room II</td><td class="sqm" data-edit>36 m&sup2;</td><td data-edit>36</td><td data-edit>30</td><td data-edit>20</td><td data-edit>16</td><td data-edit>30</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="reveal d4" data-edit style="margin-top:1.3rem;">Rooms are dressed to the brief - staging, lighting and seating are set for the event, not to a fixed plan.</p>
+        </div>
+        <div class="visual reveal slide-right" style="overflow:visible;">
+          <div class="gallery-wrap" data-gallery="meetings">
+            <div class="gallery-slide active"><img src="conf-hall-full.jpg" alt=""><div class="gallery-caption">Conference hall, full house</div></div>
+            <div class="gallery-slide"><img src="conf-hall-led.jpg" alt=""><div class="gallery-caption">Staged for a plenary</div></div>
+            <div class="gallery-slide"><img src="conf-hall-stage.jpg" alt=""><div class="gallery-caption">Stage and LED wall</div></div>
+            <div class="gallery-slide"><img src="conf-hall-rows.jpg" alt=""><div class="gallery-caption">Theatre seating</div></div>
+            <div class="gallery-slide"><img src="conf-hall-seated.jpg" alt=""><div class="gallery-caption">Hall in session</div></div>
+            <div class="gallery-slide"><img src="conf-hall-wide-lit.jpg" alt=""><div class="gallery-caption">The full width of the hall</div></div>
+            <div class="gallery-slide"><img src="meet-room-theatre.jpg" alt=""><div class="gallery-caption">Meeting room, theatre</div></div>
+            <div class="gallery-slide"><img src="meet-room-cabaret.jpg" alt=""><div class="gallery-caption">Meeting room, cabaret</div></div>
+            <div class="gallery-slide"><img src="meet-room-flipchart.jpg" alt=""><div class="gallery-caption">Breakout, set for a workshop</div></div>
+            <div class="gallery-slide"><img src="meet-room-banquet.jpg" alt=""><div class="gallery-caption">Meeting room, banquet</div></div>
+            <div class="gallery-slide"><img src="meet-room-red.jpg" alt=""><div class="gallery-caption">Breakout in use</div></div>
+            <div class="gallery-slide"><img src="meet-room-glass.jpg" alt=""><div class="gallery-caption">Glazed partition between rooms</div></div>
+            <div class="gallery-slide"><img src="conf-hallway.jpg" alt=""><div class="gallery-caption">Corridor to the meeting rooms</div></div>
+            <div class="gallery-slide"><img src="hotel-lobby-event.jpg" alt=""><div class="gallery-caption">Registration in the atrium</div></div>
+          </div>
+          <button class="gallery-arrow gallery-prev" data-dir="-1" aria-label="Previous">&#8249;</button>
+          <button class="gallery-arrow gallery-next" data-dir="1" aria-label="Next">&#8250;</button>
+          <div class="gallery-dots"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7c. ARRIVAL BY AIR -->
+  <section class="section dark">
+    <div class="bg-video"><video autoplay muted loop playsinline preload="none" src="air-bg.mp4"></video></div>
+    <div class="vidcap" data-edit>PC-12 arrival at Balaton Park</div>
+    <div class="content">
+      <div class="two-col flip">
+        <div class="visual reveal slide-left" style="overflow:visible;">
+          <div class="gallery-wrap" data-gallery="air">
+            <div class="gallery-slide active"><img src="air-helipad.jpg" alt=""><div class="gallery-caption">The helipad, inside the paddock</div></div>
+            <div class="gallery-slide"><img src="air-aerial-circuit.jpg" alt=""><div class="gallery-caption">On finals - circuit, strip and the lake beyond</div></div>
+            <div class="gallery-slide"><img src="air-strip-aerial.jpg" alt=""><div class="gallery-caption">Above the strip</div></div>
+            <div class="gallery-slide"><img src="air-cessna-strip.jpg" alt=""><div class="gallery-caption">Cessna on the grass strip</div></div>
+          </div>
+          <button class="gallery-arrow gallery-prev" data-dir="-1" aria-label="Previous">&#8249;</button>
+          <button class="gallery-arrow gallery-next" data-dir="1" aria-label="Next">&#8250;</button>
+          <div class="gallery-dots"></div>
+        </div>
+        <div>
+          <div class="eyebrow reveal d1" data-edit>Arrival by air</div>
+          <h2 class="reveal d2"><span data-edit>Land at</span><br><span data-edit>the gate.</span></h2>
+          <p class="lead reveal d3" data-edit>A helipad inside the paddock and a 750 m strip alongside the circuit. Guests land and walk to reception - no transfer, no convoy, no hour on the M7.</p>
+          <p class="reveal d4" data-edit style="margin-top:1.5rem;">The strip takes light aircraft and turboprops. For anything larger, Budapest airport is an hour away by road and Vienna two and a quarter.</p>
+        </div>
       </div>
     </div>
   </section>
