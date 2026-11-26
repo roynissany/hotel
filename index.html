@@ -31,11 +31,12 @@
   ::selection { background: var(--red); color: white; }
   .progress {
     position: fixed; top: 0; left: 0;
-    height: 3px; width: 0;
+    height: 3px; width: 100%;
+    transform: scaleX(0); transform-origin: 0 50%;
     background: var(--red);
     z-index: 100;
     box-shadow: 0 0 10px var(--red-glow);
-    transition: width .15s ease-out;
+    will-change: transform;
   }
   .corner-logo {
     position: fixed;
@@ -49,7 +50,7 @@
   .section {
     position: relative;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;
     overflow: hidden;
     scroll-snap-align: start;
     display: flex;
@@ -708,11 +709,22 @@
   var progress = document.getElementById('progress');
   var parallaxEnabled = window.matchMedia('(pointer: fine)').matches && window.innerWidth > 760;
 
+  var sections = document.querySelectorAll('.section');
+  var scrollRange = 0, scrollTicking = false;
+  function measureScroll() {
+    var h = document.documentElement;
+    scrollRange = h.scrollHeight - h.clientHeight;
+  }
+  function requestScroll() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(function () { scrollTicking = false; onScroll(); });
+  }
   function onScroll() {
     var h = document.documentElement;
-    progress.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    progress.style.transform = 'scaleX(' + (scrollRange > 0 ? h.scrollTop / scrollRange : 0) + ')';
     if (!parallaxEnabled) return;
-    document.querySelectorAll('.section').forEach(function (s) {
+    sections.forEach(function (s) {
       var r = s.getBoundingClientRect();
       if (r.bottom > 0 && r.top < window.innerHeight) {
         var bg = s.querySelector('.bg');
@@ -720,8 +732,12 @@
       }
     });
   }
-  document.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('scroll', requestScroll, { passive: true });
+  measureScroll();
   onScroll();
+  addEventListener('resize', function () { measureScroll(); requestScroll(); }, { passive: true });
+  addEventListener('load', measureScroll);
+  if ('ResizeObserver' in window) new ResizeObserver(measureScroll).observe(document.body);
 
   // Galleries - any .gallery-wrap[data-gallery] inside a .visual
   document.querySelectorAll('.gallery-wrap[data-gallery]').forEach(function (wrap) {
@@ -769,6 +785,6 @@
 </script>
 <script src="hu.js?v=20261126a"></script>
 <script src="lang.js?v=20261125a"></script>
-<script src="track.js?v=20261124b" data-site="hotel" defer></script>
+<script src="track.js?v=20261126a" data-site="hotel" defer></script>
 </body>
 </html>
